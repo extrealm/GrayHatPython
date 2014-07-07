@@ -8,7 +8,7 @@ class debugger():
         pass
     
     def load(self, path_to_exe):
-        creation_flags = DEBUG_PROCESS
+        creation_flags = CREATE_NEW_CONSOLE //DEBUG_PROCESS
         
         si = STARTUPINFO()
         pi = PROCESS_INFORMATION()
@@ -28,6 +28,7 @@ class debugger():
                                    None,
                                    byref(si),
                                    byref(pi)):
-            print("test")
+            print("[*] Launch success!")
+            print("[*] PID: %d" % pi.dwProcessId)
         else:
             print("[*] Error: 0x%08x." % kernel32.GetLastError())
